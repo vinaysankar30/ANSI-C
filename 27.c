@@ -4,15 +4,15 @@
 
 void inputArray(int *arr, int size);
 void printArray(int *arr, int size);
-void swapArray(int *sourceArr, int *destArr, int size);
+void swapArray(int *firstArr, int *secondArr, int size);
 
 
 
 
 int main()
 {
-    int sourceArr[10];
-    int destArr[10];
+    int firstArr[10];
+    int secondArr[10];
 
     int size;
 
@@ -20,32 +20,32 @@ int main()
     printf("Enter size of array: ");
     scanf("%d", &size);
 
-    printf("Enter %d elements in source array: ", size);
-    inputArray(sourceArr, size);
+    printf("Enter %d elements in first array: ", size);
+    inputArray(firstArr, size);
 
 
-    printf("Enter %d elements in destination array: ", size);
-    inputArray(destArr, size);
-
-
-
-    printf("\n\nSource array before swapping: ");
-    printArray(sourceArr, size);
-
-    printf("\nDestination array before swapping: ");
-    printArray(destArr, size);
+    printf("Enter %d elements in second array: ", size);
+    inputArray(secondArr, size);
 
 
 
-    swapArray(sourceArr, destArr, size);
+    printf("\n\nfirst array before swapping: ");
+    printArray(firstArr, size);
+
+    printf("\nsecond array before swapping: ");
+    printArray(secondArr, size);
 
 
 
-    printf("\n\nSource array after swapping: ");
-    printArray(sourceArr, size);
+    swapArray(firstArr, secondArr, size);
 
-    printf("\nDestination array after swapping: ");
-    printArray(destArr, size);
+
+
+    printf("\n\nfirst array after swapping: ");
+    printArray(firstArr, size);
+
+    printf("\nsecond array after swapping: ");
+    printArray(secondArr, size);
 
 
     return 0;
@@ -79,28 +79,25 @@ void printArray(int *arr, int size)
 
 
 
-void swapArray(int * sourceArr, int * destArr, int size)
+void swapArray(int * firstArr, int * secondArr, int size)
 {
-    // Pointer to last element of source array
-    int * sourceArrEnd = (sourceArr + (size - 1));
 
-    // Pointer to last element of destination array
-    int * destArrEnd   = (destArr + (size - 1));
+    int * firstArrEnd = (firstArr + (size - 1));
 
 
-    /*
-     * Swap individual element of both arrays
-     */
-    while(sourceArr <= sourceArrEnd && destArr <= destArrEnd)
+    int * secondArrEnd   = (secondArr + (size - 1));
+
+
+
+    while(firstArr <= firstArrEnd && secondArr <= secondArrEnd)
     {
-        *sourceArr ^= *destArr;
-        *destArr   ^= *sourceArr;
-        *sourceArr ^= *destArr;
+        *firstArr ^= *secondArr;
+        *secondArr   ^= *firstArr;
+        *firstArr ^= *secondArr;
 
-        // Increment source array to point to next element
-        sourceArr++;
 
-        // Increment destination array to point to next element
-        destArr++;
+        firstArr++;
+
+        secondArr++;
     }
 }
