@@ -1,39 +1,106 @@
-/*
-27. Write a C program to swap two arrays using pointers. Use 3 functions inputArray(),
-outputArray(), and swapArray()
-*/
 
 #include <stdio.h>
-#define MAX 10
-void inputArray(int arr[]){
-	for(int i=0;i<MAX;i++){
-		scanf("%d",&arr[i]);
-	}
+
+
+void inputArray(int *arr, int size);
+void printArray(int *arr, int size);
+void swapArray(int *sourceArr, int *destArr, int size);
+
+
+
+
+int main()
+{
+    int sourceArr[10];
+    int destArr[10];
+
+    int size;
+
+
+    printf("Enter size of array: ");
+    scanf("%d", &size);
+
+    printf("Enter %d elements in source array: ", size);
+    inputArray(sourceArr, size);
+
+
+    printf("Enter %d elements in destination array: ", size);
+    inputArray(destArr, size);
+
+
+
+    printf("\n\nSource array before swapping: ");
+    printArray(sourceArr, size);
+
+    printf("\nDestination array before swapping: ");
+    printArray(destArr, size);
+
+
+
+    swapArray(sourceArr, destArr, size);
+
+
+
+    printf("\n\nSource array after swapping: ");
+    printArray(sourceArr, size);
+
+    printf("\nDestination array after swapping: ");
+    printArray(destArr, size);
+
+
+    return 0;
 }
 
-void outputArray(int arr){
-	for(int i=0;i<MAX;i++){
-		printf("%d ",arr[i]);
-	}
+
+
+
+void inputArray(int *arr, int size)
+{
+    int *arrEnd = (arr + (size - 1));
+
+
+    while(arr <= arrEnd)
+        scanf("%d", arr++);
 }
 
-void swapArray(int *ptr1,int *ptr2){
-	for(int i=0;i<MAX;i++,ptr1++,ptr2++){
-		int temp = *ptr1;
-		*ptr1 = *ptr2;
-		*ptr2 = temp;
-	}
+
+
+
+void printArray(int *arr, int size)
+{
+    int *arrEnd = (arr + (size - 1));
+
+
+    while(arr <= arrEnd){
+        printf("%d, ", *(arr++));
+			}
 }
 
-main(){
-	int arr1[MAX],arr2[MAX];
-	printf("Enter two arrays of 10 elements..\n");
-	inputArray(arr1);
-	inputArray(arr2);
-	int *ptr1, *ptr2;
-	ptr1 = &arr1[0];
-	ptr2 = &arr2[0];
-	swapArray(ptr1,ptr2);
-	outputArray(arr1);
-	outputArray(arr2);
+
+
+
+void swapArray(int * sourceArr, int * destArr, int size)
+{
+    // Pointer to last element of source array
+    int * sourceArrEnd = (sourceArr + (size - 1));
+
+    // Pointer to last element of destination array
+    int * destArrEnd   = (destArr + (size - 1));
+
+
+    /*
+     * Swap individual element of both arrays
+     */
+    while(sourceArr <= sourceArrEnd && destArr <= destArrEnd)
+    {
+        *sourceArr ^= *destArr;
+        *destArr   ^= *sourceArr;
+        *sourceArr ^= *destArr;
+
+        // Increment source array to point to next element
+        sourceArr++;
+
+        // Increment destination array to point to next element
+        destArr++;
+    }
 }
