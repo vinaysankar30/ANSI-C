@@ -26,7 +26,7 @@ int main()
     printf("Enter dogs color: \n") ;
     scanf("%s",ptr_dog->color);
     printf("Enter dog's age : \n" );
-    scanf("%d",ptr_dog->age);
+    scanf("%d",&ptr_dog->age);
 
     printf("Dog's name: %s\n", ptr_dog->name);
     printf("Dog's breed: %s\n", ptr_dog->breed);
@@ -38,7 +38,7 @@ int main()
     scanf("%s",new_name);
     strcpy(ptr_dog->name, new_name);
 
-
+    ptr_dog->age++;
 
     printf("Dog's new name is: %s\n", ptr_dog->name);
     printf("Dog's age is: %d\n", ptr_dog->age);
